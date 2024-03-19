@@ -16,3 +16,4 @@ Welcome to the Airbnb-like web app built with Next.js! This application allows u
 - [Mapbox](https://www.mapbox.com/) and [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) for displaying property locations.
 - [React Spinners](https://www.npmjs.com/package/react-spinners)
 - [React Icons](https://react-icons.github.io/react-icons/)
+- [React Share](https://www.npmjs.com/package/react-share) for sharing listed properties.

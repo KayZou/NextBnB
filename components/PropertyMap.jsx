@@ -18,6 +18,7 @@ const PropertyMap = ({ property }) => {
     height: "500px",
   });
   const [loading, setLoading] = useState(true);
+  const [geoCodeError, setGeoCodeError] = useState(false);
   setDefaults({
     language: "en",
     region: "ma",
@@ -26,25 +27,44 @@ const PropertyMap = ({ property }) => {
 
   useEffect(() => {
     async function fetchCords() {
-      const cords = await fromAddress(
-        `${property.location.street} ${property.location.city} ${property.location.state} ${property.location.zipcode}`
-      );
-      const { lat, lng } = cords.results[0].geometry.location;
-      console.log(lat, lng);
-      setLat(lat);
-      setLng(lng);
-      setViewport({
-        ...viewport,
-        latitude: lat,
-        longitude: lng,
-      });
-      setLoading(false);
+      try {
+        const cords = await fromAddress(
+          `${property.location.street} ${property.location.city} ${property.location.state} ${property.location.zipcode}`
+        );
+        if (cords.results.length === 0) {
+          setGeoCodeError(true);
+          setLoading(false);
+          return;
+        }
+        const { lat, lng } = cords.results[0].geometry.location;
+        console.log(lat, lng);
+        setLat(lat);
+        setLng(lng);
+        setViewport({
+          ...viewport,
+          latitude: lat,
+          longitude: lng,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message || error);
+        setGeoCodeError(true);
+        setLoading(false);
+      }
     }
     fetchCords();
   }, []);
 
   if (loading) {
     return <Spinner loading={loading} />;
+  }
+
+  if(geoCodeError) {
+    return (
+      <div className="text-center text-2xl font-bold mt-10 text-red-600">
+        Property Location Not Found!
+      </div>
+    )
   }
 
   return (

@@ -1,11 +1,53 @@
 import React from "react";
-import { FaShare } from "react-icons/fa";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 
-const ShareButtons = () => {
+const ShareButtons = ({ property }) => {
+  const url = `=${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
   return (
-    <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
-      <FaShare className="mr-2" /> Share Property
-    </button>
+    <>
+      <h3 className="text-xl font-bold pt-2 text-center">
+        Share This Property
+      </h3>
+      <div className="flex gap-3 justify-center pb-5">
+        <FacebookShareButton
+          url={url}
+          quote={property.name}
+          hashtag={`#${property.type}ForRent/NextBnB`}
+        >
+          <FacebookIcon size={40} round={true} />
+        </FacebookShareButton>
+        <TwitterShareButton
+          url={url}
+          title={property.name}
+          hashtags={[`${property.type}ForRent`, "NextBnB"]}
+        >
+          <TwitterIcon size={40} round={true} />
+        </TwitterShareButton>
+        <WhatsappShareButton
+          url={url}
+          title={property.name}
+          separator=" "
+        >
+          <WhatsappIcon size={40} round={true} />
+        </WhatsappShareButton>
+        <EmailShareButton
+          url={url}
+          subject={property.name}
+          body={`Check out this property: ${url}`}
+        >
+          <EmailIcon size={40} round={true} />
+        </EmailShareButton>
+      </div>
+    </>
   );
 };
 

@@ -8,9 +8,10 @@ const PropertyHeader = ({ image }) => {
           <Image
             src={image}
             alt=""
-            height={0}
             className="object-cover h-[400px] w-full"
-            width="1800"
+            width={0}
+            height={0}
+            sizes="100vw"
           />
         </div>
       </div>

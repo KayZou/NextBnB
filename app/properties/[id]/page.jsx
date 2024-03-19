@@ -8,6 +8,7 @@ import Link from "next/link";
 import PropertyDetails from "@/components/PropertyDetails";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
+import PropertyImages from "@/components/PropertyImages";
 
 const Property = () => {
   const { id } = useParams();
@@ -76,9 +77,9 @@ const Property = () => {
                     Contact Property Manager
                   </h3>
                   <form>
-                    <div classNameName="mb-4">
+                    <div className="mb-4">
                       <label
-                        classNameName="block text-gray-700 text-sm font-bold mb-2"
+                        className="block text-gray-700 text-sm font-bold mb-2"
                         htmlFor="name"
                       >
                         Name:
@@ -108,7 +109,7 @@ const Property = () => {
                     </div>
                     <div className="mb-4">
                       <label
-                        classNameName="block text-gray-700 text-sm font-bold mb-2"
+                        className="block text-gray-700 text-sm font-bold mb-2"
                         htmlFor="phone"
                       >
                         Phone:
@@ -148,6 +149,9 @@ const Property = () => {
           </div>
         </div>
       </section>
+      {property && property.images && (
+        <PropertyImages images={property.images} />
+      )}
     </>
   );
 };

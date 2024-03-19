@@ -6,11 +6,17 @@ const nextConfig = {
       "png.pngtree.com",
       "hospitable.com",
       "lh3.googleusercontent.com",
+      "res.cloudinary.com"
     ],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
         pathname: "**",
       },
     ],

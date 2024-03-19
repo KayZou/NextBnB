@@ -15,7 +15,8 @@ const InfoBoxes = () => {
               textColor: "text-black",
             }}
           >
-            Share your place for renting, easily reach interested customers!
+            Share your place for renting, easily reach interested customers, and
+            get the best price for your place!
           </InfoBox>
           <InfoBox
             heading="For customers"

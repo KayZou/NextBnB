@@ -6,11 +6,15 @@ async function fetchProperties() {
     if (!apiDomain) {
       return [];
     }
-    const res = await fetch(`${apiDomain}/properties`);
+    const res = await fetch(`${apiDomain}/properties`, {
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch properties");
     }
-    return res.json();
+    const data = await res.json();
+    // console.log(data);
+    return data;
   } catch (error) {
     console.log(error.message || error);
     return [];
@@ -22,7 +26,9 @@ async function fetchProperty(id) {
     if (!apiDomain) {
       throw new Error("API domain is not defined");
     }
-    const res = await fetch(`${apiDomain}/properties/${id}`);
+    const res = await fetch(`${apiDomain}/properties/${id}`, {
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch property");
     }

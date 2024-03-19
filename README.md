@@ -13,3 +13,4 @@ Welcome to the Airbnb-like web app built with Next.js! This application allows u
 
 - [Next.js](https://nextjs.org/)
 - [Cloudinary](https://cloudinary.com/)
+- [Mapbox](https://www.mapbox.com/) and [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) for displaying property locations.

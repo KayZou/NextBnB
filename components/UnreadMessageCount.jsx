@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 
-const UnreadMessageCount = ({ session }) => {
+export default function UnreadMessageCount({ session }) {
   const { unreadCount, setUnreadCount } = useGlobalContext();
 
   useEffect(() => {
@@ -28,6 +28,4 @@ const UnreadMessageCount = ({ session }) => {
       </span>
     )
   );
-};
-
-export default UnreadMessageCount;
+}

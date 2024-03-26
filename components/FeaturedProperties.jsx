@@ -4,8 +4,8 @@ import Link from "next/link";
 import { fetchProperties } from "@/utils/requests";
 
 const FeaturedProperties = async () => {
-  const properties = await fetchProperties();
-  const featuredProperties = properties
+  const data = await fetchProperties();
+  const featuredProperties = data.properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
   return (

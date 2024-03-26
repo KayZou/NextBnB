@@ -6,8 +6,15 @@ import cloudinary from "@/config/cloudinary";
 export const GET = async (req) => {
   try {
     await connectDB();
-    const properties = await Property.find({});
-    return new Response(JSON.stringify(properties), { status: 200 });
+    // pagination
+    const page = req.nextUrl.searchParams.get("page") || 1;
+    const pageSize = req.nextUrl.searchParams.get("pageSize") || 3;
+    const skip = (page - 1) * pageSize;
+    const total = await Property.countDocuments({});
+
+    const properties = await Property.find({}).skip(skip).limit(pageSize);
+    const result = { total, properties };
+    return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     console.log(error.message || error);
     return new Response(JSON.stringify({ error: error.message || error }), {
@@ -85,5 +92,3 @@ export const POST = async (req) => {
     });
   }
 };
-
-
